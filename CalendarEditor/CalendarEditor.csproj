@@ -12,6 +12,7 @@
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <Deterministic>true</Deterministic>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,6 +39,10 @@
           <Private>True</Private>
         </Reference>
         <Reference Include="mscorlib" />
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="NodaTime, Version=3.0.0.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1">
           <HintPath>..\packages\NodaTime.3.0.0\lib\netstandard2.0\NodaTime.dll</HintPath>
           <Private>True</Private>
@@ -59,28 +64,49 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Adapter\ICalAdapter.cs" />
+        <Compile Include="Adapter\ICalendarAdapter.cs" />
+        <Compile Include="Adapter\JsonAdapter.cs" />
+        <Compile Include="Adapter\XmlAdapter.cs" />
+        <Compile Include="Exceptions\InvalidEndDateException.cs" />
+        <Compile Include="Facade\CalendarOpenFacade.cs" />
+        <Compile Include="Facade\CalendarSaveFacade.cs" />
         <Compile Include="Form1.cs">
             <SubType>Form</SubType>
         </Compile>
         <Compile Include="Form1.Designer.cs">
             <DependentUpon>Form1.cs</DependentUpon>
         </Compile>
+        <Compile Include="MyCalendarEvent.cs" />
         <Compile Include="Program.cs" />
+        <Compile Include="Properties\Annotations.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <EmbeddedResource Include="Properties\Resources.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-            <SubType>Designer</SubType>
-        </EmbeddedResource>
-        <Compile Include="Properties\Resources.Designer.cs">
-            <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
+        <Compile Include="Properties\Strings.Designer.cs">
+          <AutoGen>True</AutoGen>
+          <DependentUpon>asd.</DependentUpon>
         </Compile>
+        <EmbeddedResource Include="Form1.resx">
+          <DependentUpon>Form1.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Properties\Icons.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Icons.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Properties\Strings.resx">
+          <Generator>ResXFileCodeGenerator</Generator>
+          <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+          <SubType>Designer</SubType>
+        </EmbeddedResource>
         <None Include="packages.config" />
         <None Include="Properties\Settings.settings">
             <Generator>SettingsSingleFileGenerator</Generator>
             <LastGenOutput>Settings.Designer.cs</LastGenOutput>
         </None>
+        <Compile Include="Properties\Icons.Designer.cs">
+          <DesignTime>True</DesignTime>
+          <AutoGen>True</AutoGen>
+          <DependentUpon>Icons.resx</DependentUpon>
+        </Compile>
         <Compile Include="Properties\Settings.Designer.cs">
             <AutoGen>True</AutoGen>
             <DependentUpon>Settings.settings</DependentUpon>
@@ -89,6 +115,15 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Resources\EditDocument_16x.png" />
+      <Content Include="Resources\FolderOpened_16x.png" />
+      <Content Include="Resources\FolderOpened_grey_16x.png" />
+      <Content Include="Resources\IconFile_16x.png" />
+      <Content Include="Resources\JSONScript_16x.png" />
+      <Content Include="Resources\SaveAll_16x.png" />
+      <Content Include="Resources\XMLFile_16x.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
